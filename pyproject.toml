@@ -1,0 +1,70 @@
+[project]
+name = "freemygpt"
+version = "0.1.0"
+description = "FreeMyGPT — HTTP gateway that lets ChatGPT (and any LLM) drive any local MCP server via simple GET requests. Hybrid: MCP stdio backends by default, Codex CLI and other runtimes via bundled adapters."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10,<3.13"
+authors = [{ name = "FreeMyGPT contributors" }]
+keywords = ["mcp", "chatgpt", "bridge", "gateway", "codex", "openai", "claude", "freemygpt"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Framework :: FastAPI",
+]
+dependencies = [
+    "fastapi>=0.115,<0.120",
+    "uvicorn[standard]>=0.32,<0.40",
+    "mcp>=1.26.0,<2.0",
+    "pyyaml>=6.0,<7.0",
+    "httpx>=0.28,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "types-PyYAML>=6.0",
+]
+
+[project.scripts]
+freemygpt = "freemygpt.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/MichaelAdamGroberman/FreeMyGPT"
+Issues = "https://github.com/MichaelAdamGroberman/FreeMyGPT/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/freemygpt"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
