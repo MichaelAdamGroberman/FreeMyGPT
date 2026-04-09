@@ -96,6 +96,66 @@ freemygpt doctor
 freemygpt serve --host 127.0.0.1 --port 8933
 ```
 
+## What it actually looks like
+
+Real, unedited terminal output from a fresh install:
+
+### `freemygpt new-token` and `freemygpt doctor`
+
+```console
+$ freemygpt new-token
+tEYxSiD4Zc0lq6gljpDlxlIv-GuDWyjAyhDgObGzixQ
+
+$ export FREEMYGPT_TOKEN="tEYxSiD4Zc0lq6gljpDlxlIv-GuDWyjAyhDgObGzixQ"
+
+$ freemygpt doctor
+freemygpt 0.1.2
+  token env var: FREEMYGPT_TOKEN
+  token:         present (hidden)
+  backends:      1
+    - gr0m_mem (mcp): python -m gr0m_mem.mcp_server
+```
+
+### A sample GET exchange
+
+```console
+$ freemygpt serve --host 127.0.0.1 --port 8933 &
+
+$ curl -sS http://127.0.0.1:8933/healthz
+{"status":"ok","version":"0.1.2"}
+
+$ curl -sS "http://127.0.0.1:8933/backends?token=$FREEMYGPT_TOKEN"
+{"backends":[{"name":"gr0m_mem","type":"mcp","command":"python"}]}
+
+$ curl -sS "http://127.0.0.1:8933/gr0m_mem/tools?token=$FREEMYGPT_TOKEN" | jq '.tools[].name'
+"mem_wakeup"
+"mem_remember"
+"mem_record_decision"
+"mem_recall_decisions"
+"mem_search"
+"mem_query"
+"mem_rag"
+"mem_kg_add"
+"mem_kg_query"
+"mem_kg_invalidate"
+"mem_kg_timeline"
+"mem_kg_stats"
+"mem_status"
+
+$ curl -sS "http://127.0.0.1:8933/gr0m_mem/call/mem_wakeup?token=$FREEMYGPT_TOKEN&token_budget=200" \
+  | jq -r '.text | fromjson | .text'
+## IDENTITY
+- Michael, software engineer on macOS
+
+## PREFERENCE
+- terse responses, no trailing summaries
+
+## DECISION
+- backend: sqlite_fts is the zero-dep default (pip install gr0m-mem must never fail)
+```
+
+That last call is the thing — ChatGPT's browse tool can fetch that URL and inline the response straight into the conversation. No POST, no headers, no Custom GPT Action, no GitHub plugin.
+
 ## Exposing it to ChatGPT
 
 ChatGPT needs to reach the gateway over the public internet. Pick any reverse tunnel:
