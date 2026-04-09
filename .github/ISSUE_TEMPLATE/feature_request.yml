@@ -1,0 +1,49 @@
+name: Feature request
+description: Suggest an improvement or new capability
+title: "feat: "
+labels: ["enhancement", "triage"]
+assignees:
+  - MichaelAdamGroberman
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature. Start with the **problem**
+        you are trying to solve, not the solution — it lets the
+        maintainer suggest alternatives you may not have considered.
+
+        FreeMyGPT is intentionally minimal: GET-only HTTP gateway, a
+        backend Protocol, two concrete backends (MCP stdio and Codex
+        subprocess). Feature requests that fit this shape are more
+        likely to merge than ones that expand the transport surface.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the pain point in concrete terms. Who experiences it, how often, what is the current workaround?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed solution
+      description: What you would like FreeMyGPT to do. Include the URL shape, query-parameter names, and response JSON if you have them in mind.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Other designs you weighed and why they did not fit
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links, related issues, prior art in other projects
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -1,5 +1,13 @@
 # FreeMyGPT
 
+[![CI](https://github.com/MichaelAdamGroberman/FreeMyGPT/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/MichaelAdamGroberman/FreeMyGPT/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/freemygpt.svg?logo=pypi&logoColor=white&label=PyPI)](https://pypi.org/project/freemygpt/)
+[![Python](https://img.shields.io/pypi/pyversions/freemygpt.svg?logo=python&logoColor=white)](https://pypi.org/project/freemygpt/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Downloads](https://static.pepy.tech/badge/freemygpt)](https://pepy.tech/project/freemygpt)
+[![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
+
 > **Free ChatGPT from its sandbox.** FreeMyGPT is a tiny HTTP gateway that lets ChatGPT (and any other LLM with an HTTP fetcher) drive **any local MCP server** — Gr0m_Mem, Codex CLI, Kali MCP, Home Assistant MCP, or anything else that speaks the Model Context Protocol — using nothing but **simple GET requests**. No Custom GPT Actions, no GitHub plugin, no OAuth dance, no POST bodies.
 
 ```

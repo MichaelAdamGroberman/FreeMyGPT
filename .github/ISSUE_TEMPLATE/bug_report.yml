@@ -1,0 +1,88 @@
+name: Bug report
+description: Something isn't working as documented
+title: "bug: "
+labels: ["bug", "triage"]
+assignees:
+  - MichaelAdamGroberman
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug report. Please fill out every section
+        so the maintainer can reproduce the issue without a
+        back-and-forth.
+
+        **Security issues:** please do NOT use this form. Use the
+        Security tab's "Report a vulnerability" button.
+  - type: input
+    id: version
+    attributes:
+      label: FreeMyGPT version
+      description: Output of `freemygpt --version`
+      placeholder: "0.1.2"
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      description: Output of `python --version`
+      placeholder: "3.12.1"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS and architecture
+      placeholder: "macOS 14.4, arm64"
+    validations:
+      required: true
+  - type: dropdown
+    id: backend
+    attributes:
+      label: Backend
+      description: Which backend is the failure on?
+      options:
+        - mcp (stdio MCP server)
+        - codex (subprocess adapter)
+        - both
+        - not sure
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: The exact GET URL (with the bearer token redacted as <REDACTED>) and any prior setup steps
+      render: shell
+      placeholder: |
+        freemygpt serve --port 8933 &
+        curl -sSL "http://127.0.0.1:8933/gr0m_mem/call/mem_wakeup?token=<REDACTED>"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected response
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual response
+      description: Include HTTP status code, response body, and any server-side stack trace from `freemygpt serve` stdout
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: "`freemygpt doctor` output"
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

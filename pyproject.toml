@@ -5,18 +5,51 @@ description = "FreeMyGPT — HTTP gateway that lets ChatGPT (and any LLM) drive 
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10,<3.13"
-authors = [{ name = "FreeMyGPT contributors" }]
-keywords = ["mcp", "chatgpt", "bridge", "gateway", "codex", "openai", "claude", "freemygpt"]
+authors = [
+    { name = "Michael Adam Groberman", email = "81723568+MichaelAdamGroberman@users.noreply.github.com" },
+]
+maintainers = [
+    { name = "Michael Adam Groberman", email = "81723568+MichaelAdamGroberman@users.noreply.github.com" },
+]
+keywords = [
+    "mcp",
+    "chatgpt",
+    "bridge",
+    "gateway",
+    "codex",
+    "openai",
+    "claude",
+    "anthropic",
+    "http-api",
+    "fastapi",
+    "base64",
+    "get-only",
+    "model-context-protocol",
+    "freemygpt",
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Framework :: FastAPI",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Framework :: FastAPI",
+    "Typing :: Typed",
 ]
 dependencies = [
     "fastapi>=0.115,<0.136",
@@ -39,8 +72,13 @@ dev = [
 freemygpt = "freemygpt.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/MichaelAdamGroberman/FreeMyGPT"
+Homepage = "https://pypi.org/project/freemygpt/"
+Source = "https://github.com/MichaelAdamGroberman/FreeMyGPT"
 Issues = "https://github.com/MichaelAdamGroberman/FreeMyGPT/issues"
+Changelog = "https://github.com/MichaelAdamGroberman/FreeMyGPT/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/MichaelAdamGroberman/FreeMyGPT#readme"
+Security = "https://github.com/MichaelAdamGroberman/FreeMyGPT/security/policy"
+Releases = "https://github.com/MichaelAdamGroberman/FreeMyGPT/releases"
 
 [build-system]
 requires = ["hatchling"]
