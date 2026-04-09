@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (${{ matrix.os }} / py${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.9.9"
+
+      - name: set up python
+        run: uv python install ${{ matrix.python }}
+
+      # PEP 668: `uv pip install --system` is rejected on macOS runners
+      # because Homebrew's Python is externally managed. Use a venv.
+      - name: create venv
+        run: uv venv --python ${{ matrix.python }} .venv
+
+      - name: install freemygpt with dev extras
+        run: uv pip install --python .venv/bin/python -e ".[dev]"
+
+      - name: ruff
+        run: .venv/bin/python -m ruff check src tests
+
+      - name: mypy
+        run: .venv/bin/python -m mypy src
+
+      - name: pytest
+        run: .venv/bin/python -m pytest -q
