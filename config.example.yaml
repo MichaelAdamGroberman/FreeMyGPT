@@ -1,0 +1,39 @@
+# FreeMyGPT — example config
+#
+# Copy this file to ~/.freemygpt/config.yaml and edit it, or set
+# FREEMYGPT_CONFIG to point at a different location. The bridge refuses
+# to start if no config is found or no backends are defined.
+
+auth:
+  # Bearer token required on every authenticated request. Generate a
+  # fresh one with:
+  #     freemygpt new-token
+  # and export it in the environment before running `freemygpt serve`:
+  #     export FREEMYGPT_TOKEN="<value>"
+  token_env: FREEMYGPT_TOKEN
+
+backends:
+  # Example 1: the Gr0m_Mem persistent memory brain over stdio MCP.
+  # Install Gr0m_Mem first: pip install gr0m-mem
+  gr0m_mem:
+    type: mcp
+    command: python
+    args: ["-m", "gr0m_mem.mcp_server"]
+
+  # Example 2: OpenAI Codex CLI as a single `chat` tool. The bridge
+  # spawns `codex exec <message>` per call. Adjust the args if your
+  # local Codex binary uses a different calling convention.
+  codex:
+    type: codex
+    command: codex
+    args: ["exec"]
+    default_timeout_s: 300
+
+  # Example 3: any other stdio MCP server — Kali tools, Home Assistant,
+  # your own project — just point `command` + `args` at the launcher.
+  # kali:
+  #   type: mcp
+  #   command: /usr/local/bin/kali-mcp
+  #   args: []
+  #   env:
+  #     KALI_HOST: 10.0.0.29
