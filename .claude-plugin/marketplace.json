@@ -1,0 +1,33 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "freemygpt",
+  "description": "HTTP gateway that lets ChatGPT and any LLM drive any local MCP server via simple GET requests",
+  "owner": {
+    "name": "Michael Adam Groberman",
+    "url": "https://github.com/MichaelAdamGroberman"
+  },
+  "plugins": [
+    {
+      "name": "freemygpt",
+      "description": "HTTP gateway that exposes any local MCP server (or Codex CLI) to ChatGPT's built-in browse tool and any other GET-only agent runtime. Hybrid: MCP stdio backends by default, Codex subprocess via a bundled adapter, bearer token auth in the query string.",
+      "version": "0.1.2",
+      "author": {
+        "name": "Michael Adam Groberman",
+        "url": "https://www.linkedin.com/in/michael-adam-groberman/"
+      },
+      "source": "./",
+      "category": "productivity",
+      "license": "MIT",
+      "keywords": [
+        "mcp",
+        "chatgpt",
+        "bridge",
+        "gateway",
+        "codex",
+        "http",
+        "fastapi",
+        "base64"
+      ]
+    }
+  ]
+}
