@@ -52,7 +52,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "fastapi>=0.115,<0.136",
+    "fastapi>=0.115,<0.137",
     "uvicorn[standard]>=0.32,<0.45",
     "mcp>=1.26.0,<2.0",
     "pyyaml>=6.0,<7.0",
